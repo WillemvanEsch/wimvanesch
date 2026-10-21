@@ -1,0 +1,134 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px var(--gutter);
+  mix-blend-mode: difference;
+  color: #fff;
+}
+
+.logo {
+  font-family: var(--font-serif), serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.toggleText {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.burger {
+  position: relative;
+  width: 26px;
+  height: 10px;
+}
+.burger i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.6s var(--ease), top 0.6s var(--ease);
+}
+.burger i:first-child {
+  top: 0;
+}
+.burger i:last-child {
+  top: 9px;
+}
+.burgerOpen i:first-child {
+  top: 5px;
+  transform: rotate(20deg);
+}
+.burgerOpen i:last-child {
+  top: 5px;
+  transform: rotate(-20deg);
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: #050505;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 96px var(--gutter) 32px;
+}
+
+.menuBg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.menuBgImage {
+  position: absolute;
+  inset: 0;
+  filter: brightness(0.38) saturate(0.9);
+}
+
+.list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemWrap {
+  overflow: hidden;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: baseline;
+  padding: 0.05em 0;
+  border-bottom: 1px solid var(--line);
+  color: rgba(236, 232, 225, 0.45);
+  transition: color 0.5s var(--ease), padding 0.6s var(--ease);
+}
+.itemActive {
+  color: var(--fg);
+}
+@media (hover: hover) {
+  .itemActive {
+    padding-left: 24px;
+  }
+}
+
+.itemIndex,
+.itemCount {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+
+.itemTitle {
+  font-size: clamp(40px, min(9vw, 10.5svh), 128px);
+  line-height: 1.02;
+}
+.itemActive .itemTitle {
+  font-style: italic;
+}
+
+.menuFoot {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}

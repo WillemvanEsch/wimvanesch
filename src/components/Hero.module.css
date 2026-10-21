@@ -1,0 +1,197 @@
+.hero {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: #000;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+}
+
+.parallax {
+  position: absolute;
+  inset: -3%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.kenburns {
+  position: absolute;
+  inset: 0;
+}
+
+.dim {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 45%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 22%);
+}
+
+.title {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(110px, 16vh, 170px);
+  pointer-events: none;
+}
+
+.title h1 {
+  margin: 0;
+  font-size: clamp(64px, 14vw, 230px);
+  line-height: 0.86;
+  display: flex;
+  flex-direction: column;
+}
+
+.lineWrap {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.line {
+  display: block;
+}
+
+.italic {
+  font-style: italic;
+  padding-left: 0.5em;
+}
+
+.meta {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 30px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(16px, 3vw, 40px);
+}
+
+.counter {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+}
+
+.total {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  flex: 1;
+  height: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.dotFill {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: rgba(236, 232, 225, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.dotFill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--fg);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.dotFill[data-state="done"]::after {
+  transform: scaleX(1);
+}
+
+.dotFill[data-state="active"]::after {
+  animation: fill linear forwards;
+  animation-duration: inherit;
+  animation-play-state: inherit;
+}
+
+@keyframes fill {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.from {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 22px;
+}
+
+.scroll {
+  position: absolute;
+  right: var(--gutter);
+  top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  writing-mode: vertical-rl;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 64px;
+  background: linear-gradient(to bottom, var(--fg), transparent);
+  animation: drip 2.2s var(--ease) infinite;
+  transform-origin: top;
+}
+
+@keyframes drip {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@media (max-width: 700px) {
+  .meta {
+    grid-template-columns: auto 1fr;
+  }
+  .from {
+    display: none;
+  }
+  .scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .title h1 {
+    font-size: 24vw;
+  }
+}

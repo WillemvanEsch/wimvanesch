@@ -1,0 +1,147 @@
+.box {
+  position: fixed;
+  inset: 0;
+  z-index: 85;
+  background: #030303;
+  overflow: hidden;
+}
+
+.ambient {
+  position: absolute;
+  inset: -15%;
+  filter: blur(80px) saturate(1.4) brightness(0.32);
+}
+
+.stage {
+  position: absolute;
+  inset: 76px var(--gutter) 116px;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.photo:active {
+  cursor: grabbing;
+}
+
+.photo img {
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+}
+
+.zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 33%;
+  z-index: 2;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+@media (hover: none) {
+  .zone {
+    display: none;
+  }
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  z-index: 3;
+}
+
+.count {
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+}
+
+.caption {
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+}
+
+.close {
+  justify-self: end;
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.close i {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 50%;
+  height: 1px;
+  background: var(--fg);
+  transform: rotate(45deg);
+  transition: transform 0.5s var(--ease);
+}
+
+.close i:last-child {
+  transform: rotate(-45deg);
+}
+
+.close:hover i {
+  transform: rotate(135deg);
+}
+
+.close:hover i:last-child {
+  transform: rotate(45deg);
+}
+
+.thumbs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  height: 64px;
+  display: flex;
+  gap: 8px;
+  padding: 0 50vw;
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 3;
+}
+
+.thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.thumb {
+  position: relative;
+  flex: none;
+  height: 100%;
+  opacity: 0.35;
+  filter: grayscale(1);
+  transition: opacity 0.5s var(--ease), filter 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.thumb:hover {
+  opacity: 0.8;
+  filter: none;
+}
+
+.thumbActive {
+  opacity: 1;
+  filter: none;
+  transform: translateY(-6px);
+}

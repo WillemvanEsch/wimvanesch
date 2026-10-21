@@ -1,0 +1,59 @@
+.marquee {
+  padding: 18vh 0 14vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  overflow: hidden;
+}
+
+.head {
+  padding: 0 var(--gutter) 3vh;
+}
+
+.row {
+  display: flex;
+}
+
+.track {
+  display: flex;
+  gap: 2vw;
+  padding-right: 2vw;
+  animation: scroll 110s linear infinite;
+  will-change: transform;
+}
+
+.reverse .track {
+  animation-direction: reverse;
+  animation-duration: 130s;
+}
+
+.row:hover .track {
+  animation-play-state: paused;
+}
+
+.tile {
+  position: relative;
+  height: clamp(160px, 26vw, 380px);
+  flex: none;
+  overflow: hidden;
+  filter: grayscale(0.85) brightness(0.65);
+  transition: filter 0.9s var(--ease), transform 0.9s var(--ease);
+}
+
+.tile:hover {
+  filter: grayscale(0) brightness(1);
+  transform: scale(1.03);
+  z-index: 1;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

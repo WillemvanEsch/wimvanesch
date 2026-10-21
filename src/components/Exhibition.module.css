@@ -1,0 +1,184 @@
+.heading {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding-right: 6vw;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(80px, 16vw, 280px);
+  line-height: 0.88;
+  font-style: italic;
+}
+
+.titleWrap {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0 0.08em 0.08em 0;
+}
+
+/* Desktop wall */
+
+.wall {
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 7vw;
+  padding: 0 var(--gutter);
+  height: 100%;
+  will-change: transform;
+}
+
+.end {
+  flex: none;
+  width: 10vw;
+  height: 1px;
+}
+
+.frame {
+  position: relative;
+  flex: none;
+  height: 68svh;
+  margin: 0;
+  transition: opacity 0.8s var(--ease), filter 0.8s var(--ease);
+}
+
+.frame.tall {
+  height: 76svh;
+}
+
+/* Gallery light: a soft glow in the photo's own colour behind it */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  background: var(--glow);
+  filter: blur(70px);
+  opacity: 0.45;
+  z-index: -1;
+  transition: opacity 0.8s var(--ease), inset 0.8s var(--ease);
+}
+
+.frame:hover::before {
+  opacity: 0.8;
+  inset: -2%;
+}
+
+.track:has(.frame:hover) .frame:not(:hover) {
+  opacity: 0.35;
+  filter: grayscale(0.6);
+}
+
+.frameButton {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9);
+}
+
+.frameImg {
+  position: absolute;
+  inset: 0 -8%;
+  transition: scale 1.2s var(--ease);
+}
+
+.frame:hover .frameImg {
+  scale: 1.04;
+}
+
+.caption {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.caption :global(.serif) {
+  font-size: 18px;
+  letter-spacing: 0;
+  font-style: italic;
+  color: var(--fg);
+}
+
+.hud {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 28px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+}
+
+.hudCount {
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress {
+  height: 1px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background: var(--fg);
+  transform-origin: left;
+}
+
+/* Phones / tablets */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18vw;
+  padding: 0 var(--gutter) 20vh;
+}
+
+.stack .heading {
+  min-height: 92svh;
+  padding: 0;
+  justify-content: flex-end;
+  padding-bottom: 8vh;
+}
+
+.stackItem {
+  position: relative;
+  margin: 0 calc(var(--gutter) * -1);
+}
+
+.stackItem .frameButton {
+  position: relative;
+  box-shadow: none;
+}
+
+.stackItem .caption {
+  position: static;
+  padding: 14px var(--gutter) 0;
+}
