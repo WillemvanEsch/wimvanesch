@@ -64,7 +64,7 @@ export default function Nav() {
                     src={collections[hovered].photos[0].src}
                     alt=""
                     fill
-                    sizes="100vw"
+                    sizes="(max-aspect-ratio: 3/2) 150vh, 100vw"
                     style={{ objectFit: "cover" }}
                   />
                 </motion.div>

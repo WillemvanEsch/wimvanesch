@@ -67,7 +67,7 @@ export default function Hero({ photos }: { photos: Photo[] }) {
                   alt={photo.title ?? ""}
                   fill
                   priority={index === 0}
-                  sizes="100vw"
+                  sizes="(max-aspect-ratio: 3/2) 150vh, 100vw"
                   placeholder={photo.blurDataURL ? "blur" : "empty"}
                   blurDataURL={photo.blurDataURL}
                   style={{ objectFit: "cover" }}

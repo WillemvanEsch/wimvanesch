@@ -41,7 +41,7 @@ function Room({ collection }: { collection: Collection }) {
               src={cover.src}
               alt={collection.title}
               fill
-              sizes="100vw"
+              sizes="(max-aspect-ratio: 3/2) 150vh, 100vw"
               placeholder={cover.blurDataURL ? "blur" : "empty"}
               blurDataURL={cover.blurDataURL}
               style={{ objectFit: "cover" }}

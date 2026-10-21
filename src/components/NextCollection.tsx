@@ -18,7 +18,7 @@ export default function NextCollection({ collection }: { collection: Collection 
     <Link ref={ref} href={`/${collection.slug}`} className={styles.next} data-cursor="Volgende">
       <motion.div className={styles.frame} style={{ clipPath: clip }}>
         <motion.div className={styles.img} style={{ y }}>
-          <Image src={cover.src} alt="" fill sizes="100vw" style={{ objectFit: "cover" }} />
+          <Image src={cover.src} alt="" fill sizes="(max-aspect-ratio: 3/2) 150vh, 100vw" style={{ objectFit: "cover" }} />
         </motion.div>
       </motion.div>
       <div className={styles.text}>
