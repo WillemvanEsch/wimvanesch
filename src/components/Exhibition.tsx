@@ -7,8 +7,6 @@ import { pad, type Collection, type Photo } from "@/lib/photos";
 import Lightbox from "./Lightbox";
 import styles from "./Exhibition.module.css";
 
-const ease = [0.76, 0, 0.24, 1] as const;
-
 /**
  * A collection hung like an exhibition: on desktop the wall scrolls sideways
  * while you scroll down, on phones the photos stack full width.
@@ -54,41 +52,6 @@ export default function Exhibition({ collection }: { collection: Collection }) {
   );
 }
 
-function Heading({ collection }: { collection: Collection }) {
-  return (
-    <div className={styles.heading}>
-      <motion.span
-        className="label"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
-      >
-        {pad(collection.index + 1)} — {collection.subtitle}
-      </motion.span>
-      <h1 className={`serif ${styles.title}`}>
-        <span className={styles.titleWrap}>
-          <motion.span
-            initial={{ y: "105%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1.3, ease, delay: 0.15 }}
-            style={{ display: "inline-block" }}
-          >
-            {collection.title}
-          </motion.span>
-        </span>
-      </h1>
-      <motion.span
-        className="label"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 1 }}
-      >
-        {collection.photos.length} foto&apos;s
-      </motion.span>
-    </div>
-  );
-}
-
 /* ---------- Desktop: horizontal wall ---------- */
 
 function Wall({ collection, onOpen }: { collection: Collection; onOpen: (i: number) => void }) {
@@ -123,8 +86,8 @@ function Wall({ collection, onOpen }: { collection: Collection; onOpen: (i: numb
   return (
     <section ref={section} className={styles.wall} style={{ height: `calc(100svh + ${distance}px)` }}>
       <div className={styles.sticky}>
+        <h1 className={styles.srOnly}>{collection.title}</h1>
         <motion.div ref={track} className={styles.track} style={{ x }}>
-          <Heading collection={collection} />
           {collection.photos.map((p, i) => (
             <Frame key={p.key} photo={p} index={i} progress={smooth} total={collection.photos.length} onOpen={onOpen} />
           ))}
@@ -138,7 +101,7 @@ function Wall({ collection, onOpen }: { collection: Collection; onOpen: (i: numb
           <div className={styles.progress}>
             <motion.span style={{ scaleX: bar }} />
           </div>
-          <span className="label">Scroll</span>
+          <span className="label">{collection.title}</span>
         </div>
       </div>
     </section>
@@ -198,7 +161,7 @@ function Frame({
 function Stack({ collection, onOpen }: { collection: Collection; onOpen: (i: number) => void }) {
   return (
     <section className={styles.stack}>
-      <Heading collection={collection} />
+      <h1 className={styles.srOnly}>{collection.title}</h1>
       {collection.photos.map((p, i) => (
         <motion.figure
           key={p.key}

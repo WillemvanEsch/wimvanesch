@@ -7,36 +7,19 @@
   place-items: center;
 }
 
-.name {
-  display: flex;
-  font-size: clamp(48px, 10vw, 150px);
-  line-height: 1;
-}
-
-.charWrap {
-  display: inline-block;
-  overflow: hidden;
-  padding-bottom: 0.08em;
-}
-
-.char {
-  display: inline-block;
-}
-
 .bottom {
   position: absolute;
   left: var(--gutter);
   right: var(--gutter);
   bottom: 32px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .count {
-  font-family: var(--font-serif), serif;
-  font-size: 44px;
-  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--muted);
   font-variant-numeric: tabular-nums;
 }
 
@@ -44,8 +27,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  height: 2px;
+  top: 50%;
+  height: 1px;
   background: var(--accent);
-  transform-origin: left;
+  transform-origin: center;
 }

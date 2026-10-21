@@ -27,9 +27,7 @@ function Room({ collection }: { collection: Collection }) {
     ["inset(22% 28% 22% 28%)", "inset(0% 0% 0% 0%)"],
   );
   const scale = useTransform(scrollYProgress, [0, 1], [1.35, 1]);
-  const titleScale = useTransform(scrollYProgress, [0.1, 0.8], [0.7, 1]);
-  const titleOpacity = useTransform(scrollYProgress, [0.25, 0.7], [0, 1]);
-  const spread = useTransform(scrollYProgress, [0.2, 0.9], ["-0.04em", "0.02em"]);
+  const labelOpacity = useTransform(scrollYProgress, [0.35, 0.75], [0, 1]);
   const cover = collection.photos[0];
 
   return (
@@ -54,20 +52,12 @@ function Room({ collection }: { collection: Collection }) {
           <span className="label">
             {pad(collection.index + 1)} / {pad(collections.length)}
           </span>
-          <span className="label">{collection.photos.length} foto&apos;s</span>
         </div>
 
-        <motion.h2
-          className={`serif ${styles.title}`}
-          style={{ scale: titleScale, opacity: titleOpacity, letterSpacing: spread }}
-        >
-          {collection.title}
-        </motion.h2>
-
-        <motion.div className={styles.bottom} style={{ opacity: titleOpacity }}>
-          <span className={`serif ${styles.sub}`}>{collection.subtitle}</span>
+        <motion.div className={styles.bottom} style={{ opacity: labelOpacity }}>
+          <span className="label">{collection.title}</span>
           <span className={styles.cta}>
-            Bekijk collectie <span aria-hidden>→</span>
+            {collection.photos.length} foto&apos;s <span aria-hidden>→</span>
           </span>
         </motion.div>
       </div>

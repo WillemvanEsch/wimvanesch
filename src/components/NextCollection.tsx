@@ -22,8 +22,8 @@ export default function NextCollection({ collection }: { collection: Collection 
         </motion.div>
       </motion.div>
       <div className={styles.text}>
-        <span className="label">Volgende collectie</span>
-        <span className={`serif ${styles.title}`}>{collection.title}</span>
+        <span className="label">Volgende</span>
+        <span className="label">{collection.title} →</span>
       </div>
     </Link>
   );

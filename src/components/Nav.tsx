@@ -29,8 +29,11 @@ export default function Nav() {
   return (
     <>
       <header className={styles.bar}>
-        <Link href="/" className={styles.logo} data-cursor="">
-          Wim van Esch
+        <Link href="/" className={styles.logo} data-cursor="" aria-label="Wim van Esch, home">
+          <svg viewBox="0 0 24 24" aria-hidden>
+            <circle cx="12" cy="12" r="10.5" />
+            <circle cx="12" cy="12" r="3.2" />
+          </svg>
         </Link>
         <button className={styles.toggle} onClick={() => setOpen((o) => !o)} data-cursor="" aria-expanded={open}>
           <span className={styles.toggleText}>{open ? "Sluit" : "Collecties"}</span>
@@ -50,46 +53,33 @@ export default function Nav() {
             exit={{ clipPath: "inset(100% 0 0% 0)" }}
             transition={{ duration: 0.9, ease }}
           >
-            <div className={styles.menuBg} aria-hidden>
-              <AnimatePresence initial={false}>
-                <motion.div
-                  key={hovered}
-                  className={styles.menuBgImage}
-                  initial={{ opacity: 0, scale: 1.12 }}
-                  animate={{ opacity: 1, scale: 1.02 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1.1, ease }}
-                >
-                  <Image
-                    src={collections[hovered].photos[0].src}
-                    alt=""
-                    fill
-                    sizes="(max-aspect-ratio: 3/2) 150vh, 100vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <nav className={styles.list}>
+            <nav className={styles.grid}>
               {collections.map((c, i) => (
                 <motion.div
                   key={c.slug}
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, ease, delay: 0.25 + i * 0.06 }}
-                  className={styles.itemWrap}
+                  className={styles.cell}
+                  initial={{ clipPath: "inset(100% 0 0 0)" }}
+                  animate={{ clipPath: "inset(0% 0 0 0)" }}
+                  transition={{ duration: 1.1, ease, delay: 0.3 + i * 0.07 }}
                 >
                   <Link
                     href={`/${c.slug}`}
-                    className={`${styles.item} ${hovered === i ? styles.itemActive : ""}`}
+                    className={`${styles.tile} ${hovered === i ? styles.tileActive : ""}`}
                     onMouseEnter={() => setHovered(i)}
                     onFocus={() => setHovered(i)}
                     data-cursor="Open"
                   >
-                    <span className={styles.itemIndex}>{pad(i + 1)}</span>
-                    <span className={`serif ${styles.itemTitle}`}>{c.title}</span>
-                    <span className={styles.itemCount}>{c.photos.length}</span>
+                    <Image
+                      src={c.photos[0].src}
+                      alt=""
+                      fill
+                      sizes="(max-width: 700px) 50vw, 33vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                    <span className={styles.tileLabel}>
+                      <span>{pad(i + 1)}</span>
+                      <span>{c.title}</span>
+                    </span>
                   </Link>
                 </motion.div>
               ))}
@@ -101,7 +91,7 @@ export default function Nav() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              <span className="label">Fotografie</span>
+              <span className="label">Wim van Esch</span>
               <a href="mailto:info@mediasolutions.nl" className="label" data-cursor="Mail">
                 info@mediasolutions.nl
               </a>

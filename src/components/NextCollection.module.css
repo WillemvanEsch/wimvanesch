@@ -15,12 +15,12 @@
 .img {
   position: absolute;
   inset: -10% 0;
-  filter: brightness(0.45);
+  filter: brightness(0.6);
   transition: filter 1s var(--ease);
 }
 
 .next:hover .img {
-  filter: brightness(0.7);
+  filter: brightness(0.9);
 }
 
 .text {
@@ -33,10 +33,4 @@
 
 .text :global(.label) {
   color: rgba(236, 232, 225, 0.8);
-}
-
-.title {
-  font-size: clamp(72px, 15vw, 260px);
-  line-height: 0.9;
-  font-style: italic;
 }

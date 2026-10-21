@@ -21,11 +21,10 @@ export default function Hero({ photos }: { photos: Photo[] }) {
   const x = useSpring(px, { stiffness: 60, damping: 20 });
   const y = useSpring(py, { stiffness: 60, damping: 20 });
 
-  // Scroll: photo sinks and dims, title lifts away.
+  // Scroll: photo sinks and dims.
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const dim = useTransform(scrollYProgress, [0, 1], [0, 0.85]);
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-60%"]);
 
   useEffect(() => {
     if (paused) return;
@@ -81,30 +80,7 @@ export default function Hero({ photos }: { photos: Photo[] }) {
 
       <div className={styles.shade} />
 
-      <motion.div className={styles.title} style={{ y: titleY }}>
-        <h1 className="serif">
-          <span className={styles.lineWrap}>
-            <motion.span
-              className={styles.line}
-              initial={{ y: "105%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.4, ease, delay: 0.4 }}
-            >
-              Wim
-            </motion.span>
-          </span>
-          <span className={styles.lineWrap}>
-            <motion.span
-              className={`${styles.line} ${styles.italic}`}
-              initial={{ y: "105%" }}
-              animate={{ y: 0 }}
-              transition={{ duration: 1.4, ease, delay: 0.52 }}
-            >
-              van Esch
-            </motion.span>
-          </span>
-        </h1>
-      </motion.div>
+      <h1 className={styles.srOnly}>Wim van Esch fotografie</h1>
 
       <div className={styles.meta} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
         <div className={styles.counter}>
@@ -134,8 +110,7 @@ export default function Hero({ photos }: { photos: Photo[] }) {
         </div>
         {collection && (
           <Link href={`/${collection.slug}`} className={styles.from} data-cursor="Open">
-            <span className="label">Collectie</span>
-            <span className="serif">{collection.title}</span>
+            <span className="label">{collection.title}</span>
           </Link>
         )}
       </div>

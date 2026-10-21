@@ -13,10 +13,22 @@
 }
 
 .logo {
-  font-family: var(--font-serif), serif;
-  font-size: 22px;
-  font-weight: 400;
-  letter-spacing: 0.01em;
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+
+.logo svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  transition: transform 1.2s var(--ease);
+}
+
+.logo:hover svg {
+  transform: rotate(90deg) scale(1.1);
 }
 
 .toggle {
@@ -66,61 +78,58 @@
   background: #050505;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 96px var(--gutter) 32px;
+  padding: 80px var(--gutter) 64px;
 }
 
-.menuBg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-.menuBgImage {
-  position: absolute;
-  inset: 0;
-  filter: brightness(0.38) saturate(0.9);
-}
-
-.list {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.itemWrap {
-  overflow: hidden;
-}
-
-.item {
+.grid {
   display: grid;
-  grid-template-columns: 48px 1fr auto;
-  align-items: baseline;
-  padding: 0.05em 0;
-  border-bottom: 1px solid var(--line);
-  color: rgba(236, 232, 225, 0.45);
-  transition: color 0.5s var(--ease), padding 0.6s var(--ease);
-}
-.itemActive {
-  color: var(--fg);
-}
-@media (hover: hover) {
-  .itemActive {
-    padding-left: 24px;
-  }
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  flex: 1;
 }
 
-.itemIndex,
-.itemCount {
+.cell {
+  position: relative;
+  min-height: 0;
+}
+
+.tile {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.tile img {
+  filter: brightness(0.55) grayscale(0.5);
+  transform: scale(1.06);
+  transition: filter 0.9s var(--ease), transform 1.4s var(--ease);
+}
+
+.tileActive img {
+  filter: brightness(1) grayscale(0);
+  transform: scale(1);
+}
+
+.grid:not(:hover) .tile img {
+  filter: brightness(0.8) grayscale(0);
+}
+
+.tileLabel {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  display: flex;
+  gap: 12px;
   font-size: 11px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(236, 232, 225, 0.85);
 }
 
-.itemTitle {
-  font-size: clamp(40px, min(9vw, 10.5svh), 128px);
-  line-height: 1.02;
-}
-.itemActive .itemTitle {
-  font-style: italic;
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .menuFoot {

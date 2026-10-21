@@ -1,13 +1,12 @@
 .footer {
-  padding: 20vh var(--gutter) 40px;
+  padding: 16vh var(--gutter) 40px;
   border-top: 1px solid var(--line);
 }
 
 .quote {
-  margin: 0 0 18vh;
-  max-width: 14ch;
-  font-size: clamp(44px, 7.5vw, 120px);
-  line-height: 0.98;
+  margin: 0 0 14vh;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.2;
 }
 
 .quote em {
@@ -23,7 +22,7 @@
 }
 
 .mail {
-  font-size: clamp(22px, 2.6vw, 36px);
+  font-size: 18px;
   background: linear-gradient(currentColor, currentColor) left bottom / 0% 1px no-repeat;
   transition: background-size 0.7s var(--ease);
 }

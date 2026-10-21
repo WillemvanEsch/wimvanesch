@@ -1,23 +1,9 @@
-.heading {
-  flex: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 18px;
-  padding-right: 6vw;
-}
-
-.title {
-  margin: 0;
-  font-size: clamp(80px, 16vw, 280px);
-  line-height: 0.88;
-  font-style: italic;
-}
-
-.titleWrap {
-  display: inline-block;
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
   overflow: hidden;
-  padding: 0 0.08em 0.08em 0;
+  clip-path: inset(50%);
 }
 
 /* Desktop wall */
@@ -39,7 +25,7 @@
   display: flex;
   align-items: center;
   gap: 7vw;
-  padding: 0 var(--gutter);
+  padding: 0 var(--gutter) 0 14vw;
   height: 100%;
   will-change: transform;
 }
@@ -157,15 +143,8 @@
 .stack {
   display: flex;
   flex-direction: column;
-  gap: 18vw;
-  padding: 0 var(--gutter) 20vh;
-}
-
-.stack .heading {
-  min-height: 92svh;
-  padding: 0;
-  justify-content: flex-end;
-  padding-bottom: 8vh;
+  gap: 8vw;
+  padding: 90px var(--gutter) 20vh;
 }
 
 .stackItem {

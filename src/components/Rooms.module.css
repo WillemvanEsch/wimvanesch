@@ -32,12 +32,12 @@
 .shade {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.6));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0) 30%);
   transition: background 0.8s var(--ease);
 }
 
 .room:hover .shade {
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.45));
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0) 30%);
 }
 
 .top {
@@ -53,17 +53,6 @@
   color: rgba(236, 232, 225, 0.75);
 }
 
-.title {
-  position: relative;
-  margin: 0;
-  font-size: clamp(72px, 17vw, 300px);
-  line-height: 0.9;
-  font-style: italic;
-  text-align: center;
-  text-shadow: 0 10px 60px rgba(0, 0, 0, 0.35);
-  pointer-events: none;
-}
-
 .bottom {
   position: absolute;
   left: var(--gutter);
@@ -72,10 +61,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-}
-
-.sub {
-  font-size: 24px;
 }
 
 .cta {
@@ -91,4 +76,8 @@
 
 .room:hover .cta span {
   transform: translateX(8px);
+}
+
+.bottom :global(.label) {
+  color: rgba(236, 232, 225, 0.85);
 }

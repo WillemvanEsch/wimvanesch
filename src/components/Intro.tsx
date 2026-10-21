@@ -6,9 +6,8 @@ import { lockScroll } from "./SmoothScroll";
 import styles from "./Intro.module.css";
 
 const ease = [0.76, 0, 0.24, 1] as const;
-const NAME = "Wim van Esch";
 
-/** Opening curtain, shown once per browser session. */
+/** Opening curtain: a dark room with a line of light, shown once per browser session. */
 export default function Intro({ preload }: { preload: string[] }) {
   const [show, setShow] = useState(true);
   const [count, setCount] = useState(0);
@@ -62,22 +61,7 @@ export default function Intro({ preload }: { preload: string[] }) {
           exit={{ clipPath: "inset(0 0 100% 0)" }}
           transition={{ duration: 1.1, ease }}
         >
-          <div className={styles.name}>
-            {NAME.split("").map((ch, i) => (
-              <span key={i} className={styles.charWrap}>
-                <motion.span
-                  className={`serif ${styles.char}`}
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1.2, ease, delay: 0.1 + i * 0.045 }}
-                >
-                  {ch === " " ? " " : ch}
-                </motion.span>
-              </span>
-            ))}
-          </div>
           <div className={styles.bottom}>
-            <span className="label">Fotografie</span>
             <span className={styles.count}>{String(count).padStart(3, "0")}</span>
           </div>
           <motion.div className={styles.line} style={{ scaleX: count / 100 }} />
